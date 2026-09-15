@@ -1,0 +1,103 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ModelPilot — Multi-LLM Orchestrator</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="shell">
+
+    <aside class="sidebar">
+
+        <div class="brand">
+            <span class="brand-mark">◆</span>
+            <span class="brand-name">MODELPILOT</span>
+        </div>
+
+        <p class="brand-sub">
+            Routes each task to the model best suited to run it —
+            and recovers automatically if that model fails.
+        </p>
+
+        <div class="field">
+            <label for="task-input">Task</label>
+
+            <textarea
+                id="task-input"
+                rows="5"
+                placeholder="e.g. Build a Flask authentication API with JWT and rate limiting"
+            >Build a production-ready Flask authentication API with JWT and rate limiting.</textarea>
+        </div>
+
+        <div class="field">
+
+            <label>Simulate a failure</label>
+
+            <p class="hint">
+                Force a provider to fail mid-task so you can watch
+                the recovery engine hand off to the next best model.
+            </p>
+
+            <div id="fail-toggle-list" class="fail-toggle-list"></div>
+
+        </div>
+
+        <button id="run-btn" class="run-btn">
+            Run task
+        </button>
+
+        <div class="field providers-field">
+
+            <label>Providers</label>
+
+            <div id="provider-list" class="provider-list"></div>
+
+        </div>
+
+    </aside>
+
+
+    <main class="main">
+
+        <div id="empty-state" class="empty-state">
+
+            <p>
+                Pipeline output will appear here once you run a task.
+            </p>
+
+        </div>
+
+
+        <div id="pipeline" class="pipeline" hidden></div>
+
+
+        <div id="log-toggle" class="log-toggle" hidden>
+            Raw trace ▾
+        </div>
+
+        <pre id="raw-log" class="raw-log" hidden></pre>
+
+    </main>
+
+</div>
+
+
+<!-- Markdown renderer -->
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+<!-- ModelPilot frontend -->
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+</html>
+

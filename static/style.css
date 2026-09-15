@@ -1,0 +1,1326 @@
+
+:root {
+    --bg: #0b0d11;
+    --panel: #101319;
+    --panel-2: #151922;
+
+    --border: #272d38;
+
+    --text: #e7eaf0;
+    --muted: #8b93a3;
+
+    --accent: #dfe4ed;
+
+    --success: #72d39a;
+    --error: #e46d67;
+    --warning: #e2b86b;
+
+    --radius: 8px;
+
+    --sans: "IBM Plex Sans", sans-serif;
+    --mono: "IBM Plex Mono", monospace;
+}
+
+
+* {
+    box-sizing: border-box;
+}
+
+
+html,
+body {
+    margin: 0;
+    padding: 0;
+
+    min-height: 100%;
+
+    background: var(--bg);
+    color: var(--text);
+
+    font-family: var(--sans);
+}
+
+
+body {
+    min-height: 100vh;
+}
+
+
+/* ============================================================
+   MAIN LAYOUT
+   ============================================================ */
+
+.shell {
+    display: grid;
+
+    grid-template-columns: 330px minmax(0, 1fr);
+
+    min-height: 100vh;
+}
+
+
+/* ============================================================
+   SIDEBAR
+   ============================================================ */
+
+.sidebar {
+    border-right: 1px solid var(--border);
+
+    padding: 28px 24px;
+
+    background: var(--panel);
+}
+
+
+.brand {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+}
+
+
+.brand-mark {
+    font-size: 15px;
+
+    color: var(--accent);
+}
+
+
+.brand-name {
+    font-family: var(--mono);
+
+    font-size: 15px;
+
+    font-weight: 600;
+
+    letter-spacing: 0.08em;
+}
+
+
+.brand-sub {
+    margin: 0 0 30px;
+
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* ============================================================
+   FIELDS
+   ============================================================ */
+
+.field {
+    margin-bottom: 24px;
+}
+
+
+.field label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.08em;
+
+    color: var(--muted);
+}
+
+
+textarea {
+    width: 100%;
+
+    resize: vertical;
+
+    min-height: 130px;
+
+    padding: 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background: var(--panel-2);
+
+    color: var(--text);
+
+    font-family: var(--sans);
+
+    font-size: 14px;
+
+    line-height: 1.5;
+
+    outline: none;
+}
+
+
+textarea:focus {
+    border-color: #495263;
+}
+
+
+.hint {
+    margin: 0 0 12px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   RUN BUTTON
+   ============================================================ */
+
+.run-btn {
+    width: 100%;
+
+    padding: 12px 16px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background: var(--accent);
+
+    color: #0b0d11;
+
+    font-family: var(--mono);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        opacity 0.15s ease,
+        transform 0.15s ease;
+}
+
+
+.run-btn:hover {
+    opacity: 0.9;
+}
+
+
+.run-btn:active {
+    transform: translateY(1px);
+}
+
+
+.run-btn:disabled {
+    opacity: 0.5;
+
+    cursor: wait;
+}
+
+
+/* ============================================================
+   FAILURE TOGGLES
+   ============================================================ */
+
+.fail-toggle-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 7px;
+}
+
+
+.fail-toggle {
+    display: flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    padding: 7px 9px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+
+    background: var(--panel-2);
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+
+.fail-toggle:hover {
+    color: var(--text);
+}
+
+
+.fail-toggle input {
+    margin: 0;
+}
+
+
+/* ============================================================
+   PROVIDERS
+   ============================================================ */
+
+.providers-field {
+    margin-top: 30px;
+}
+
+
+.provider-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 8px;
+}
+
+
+.provider-item {
+    display: grid;
+
+    grid-template-columns: 1fr auto;
+
+    gap: 2px 8px;
+
+    padding: 9px 10px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+
+    background: var(--panel-2);
+}
+
+
+.provider-name {
+    font-family: var(--mono);
+
+    font-size: 12px;
+
+    color: var(--text);
+}
+
+
+.provider-model {
+    grid-column: 1 / -1;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+}
+
+
+.provider-status {
+    grid-column: 2;
+
+    grid-row: 1;
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+}
+
+
+.provider-status.available {
+    color: var(--success);
+}
+
+
+.provider-status.unavailable {
+    color: var(--error);
+}
+
+
+/* ============================================================
+   MAIN
+   ============================================================ */
+
+.main {
+    min-width: 0;
+
+    padding: 42px 48px;
+
+    overflow-x: hidden;
+}
+
+
+.empty-state {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    min-height: 300px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+
+.pipeline {
+    width: 100%;
+
+    max-width: 1000px;
+
+    margin: 0 auto;
+}
+
+
+/* ============================================================
+   PIPELINE STAGES
+   ============================================================ */
+
+.pipeline-stage {
+    margin-bottom: 18px;
+
+    padding: 20px;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    background: var(--panel);
+
+    animation: stageIn 0.25s ease both;
+}
+
+
+@keyframes stageIn {
+
+    from {
+        opacity: 0;
+
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform: translateY(0);
+    }
+}
+
+
+/* ============================================================
+   STAGE HEADER
+   ============================================================ */
+
+.stage-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    margin-bottom: 18px;
+}
+
+
+.stage-number {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 30px;
+
+    height: 30px;
+
+    flex-shrink: 0;
+
+    border: 1px solid var(--border);
+
+    border-radius: 50%;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+}
+
+
+.stage-label {
+    font-family: var(--mono);
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 0.05em;
+}
+
+
+.stage-sub {
+    margin-top: 3px;
+
+    color: var(--muted);
+
+    font-size: 11px;
+}
+
+
+/* ============================================================
+   ANALYSIS
+   ============================================================ */
+
+.analysis-grid {
+    display: grid;
+
+    grid-template-columns: repeat(3, 1fr);
+
+    gap: 10px;
+}
+
+
+.analysis-item {
+    padding: 12px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 6px;
+
+    background: var(--panel-2);
+}
+
+
+.analysis-label {
+    display: block;
+
+    margin-bottom: 5px;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+}
+
+
+.analysis-item strong {
+    font-family: var(--mono);
+
+    font-size: 13px;
+}
+
+
+/* ============================================================
+   AVAILABILITY
+   ============================================================ */
+
+.availability-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.availability-row {
+    display: grid;
+
+    grid-template-columns: 120px minmax(0, 1fr) auto;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 9px 10px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.availability-provider {
+    font-family: var(--mono);
+
+    font-size: 12px;
+}
+
+
+.availability-model {
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+
+    white-space: nowrap;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+}
+
+
+.availability-badge {
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    text-transform: uppercase;
+}
+
+
+.availability-badge.available {
+    color: var(--success);
+}
+
+
+.availability-badge.unavailable {
+    color: var(--error);
+}
+
+
+/* ============================================================
+   ROUTING
+   ============================================================ */
+
+.ranking-list {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 5px;
+}
+
+
+.ranking-row {
+    display: grid;
+
+    grid-template-columns: 30px 1fr auto;
+
+    align-items: center;
+
+    gap: 10px;
+
+    padding: 9px 10px;
+
+    border-bottom: 1px solid var(--border);
+}
+
+
+.rank-number {
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+}
+
+
+.rank-provider {
+    font-family: var(--mono);
+
+    font-size: 12px;
+}
+
+
+.rank-score {
+    font-family: var(--mono);
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+/* ============================================================
+   MODEL SELECTION
+   ============================================================ */
+
+.selection-card {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 12px;
+
+    padding: 14px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    background: var(--panel-2);
+}
+
+
+.selection-provider {
+    font-family: var(--mono);
+
+    font-size: 15px;
+
+    font-weight: 600;
+}
+
+
+.selection-score,
+.selection-mode {
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+}
+
+
+/* ============================================================
+   EXECUTION
+   ============================================================ */
+
+.execution-meta {
+    display: flex;
+
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    gap: 10px;
+
+    margin-bottom: 14px;
+}
+
+
+.execution-provider,
+.execution-status,
+.execution-latency {
+    font-family: var(--mono);
+
+    font-size: 10px;
+}
+
+
+.execution-provider {
+    color: var(--text);
+}
+
+
+.execution-status.success {
+    color: var(--success);
+}
+
+
+.execution-status.failed {
+    color: var(--error);
+}
+
+
+.execution-latency {
+    color: var(--muted);
+}
+
+
+.execution-output {
+    min-width: 0;
+
+    padding: 18px;
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    background: var(--panel-2);
+
+    overflow-x: auto;
+}
+
+
+/* ============================================================
+   MARKDOWN OUTPUT
+   ============================================================ */
+
+.markdown-content {
+    color: var(--text);
+
+    font-size: 14px;
+
+    line-height: 1.7;
+
+    overflow-wrap: anywhere;
+}
+
+
+.markdown-content > :first-child {
+    margin-top: 0;
+}
+
+
+.markdown-content > :last-child {
+    margin-bottom: 0;
+}
+
+
+.markdown-content h1,
+.markdown-content h2,
+.markdown-content h3,
+.markdown-content h4,
+.markdown-content h5,
+.markdown-content h6 {
+    margin-top: 1.5em;
+
+    margin-bottom: 0.65em;
+
+    color: var(--text);
+
+    line-height: 1.3;
+}
+
+
+.markdown-content h1 {
+    font-size: 1.8em;
+}
+
+
+.markdown-content h2 {
+    font-size: 1.45em;
+}
+
+
+.markdown-content h3 {
+    font-size: 1.2em;
+}
+
+
+.markdown-content h4 {
+    font-size: 1.05em;
+}
+
+
+.markdown-content p {
+    margin: 0.8em 0;
+}
+
+
+.markdown-content ul,
+.markdown-content ol {
+    margin: 0.8em 0;
+
+    padding-left: 1.8em;
+}
+
+
+.markdown-content li {
+    margin: 0.35em 0;
+}
+
+
+.markdown-content li > p {
+    margin: 0.2em 0;
+}
+
+
+.markdown-content strong {
+    font-weight: 600;
+}
+
+
+.markdown-content em {
+    font-style: italic;
+}
+
+
+.markdown-content hr {
+    margin: 1.5em 0;
+
+    border: 0;
+
+    border-top: 1px solid var(--border);
+}
+
+
+/* ============================================================
+   INLINE CODE
+   ============================================================ */
+
+.markdown-content code {
+    padding: 2px 5px;
+
+    border-radius: 4px;
+
+    background: rgba(255, 255, 255, 0.06);
+
+    color: var(--text);
+
+    font-family: var(--mono);
+
+    font-size: 0.9em;
+}
+
+
+/* ============================================================
+   CODE BLOCKS
+   ============================================================ */
+
+.markdown-content pre {
+    margin: 1em 0;
+
+    padding: 15px;
+
+    overflow-x: auto;
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    background: #0a0c10;
+}
+
+
+.markdown-content pre code {
+    padding: 0;
+
+    background: transparent;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+}
+
+
+/* ============================================================
+   BLOCKQUOTE
+   ============================================================ */
+
+.markdown-content blockquote {
+    margin: 1em 0;
+
+    padding: 4px 0 4px 16px;
+
+    border-left: 3px solid var(--border);
+
+    color: var(--muted);
+}
+
+
+/* ============================================================
+   MARKDOWN TABLES
+   ============================================================ */
+
+.markdown-content table {
+    width: 100%;
+
+    margin: 1em 0;
+
+    border-collapse: collapse;
+
+    font-size: 13px;
+}
+
+
+.markdown-content th,
+.markdown-content td {
+    padding: 9px 12px;
+
+    border: 1px solid var(--border);
+
+    text-align: left;
+
+    vertical-align: top;
+}
+
+
+.markdown-content th {
+    font-weight: 600;
+
+    background: rgba(255, 255, 255, 0.035);
+}
+
+
+.markdown-content tr:nth-child(even) {
+    background: rgba(255, 255, 255, 0.018);
+}
+
+
+/* ============================================================
+   MARKDOWN LINKS
+   ============================================================ */
+
+.markdown-content a {
+    color: var(--text);
+
+    text-decoration: underline;
+
+    text-underline-offset: 3px;
+}
+
+
+/* ============================================================
+   IMAGE OUTPUT
+   ============================================================ */
+
+.image-result {
+    width: 100%;
+}
+
+
+.exec-image {
+    display: block;
+
+    width: auto;
+
+    max-width: 100%;
+
+    max-height: 700px;
+
+    margin: 0 auto;
+
+    border: 1px solid var(--border);
+
+    border-radius: var(--radius);
+
+    object-fit: contain;
+}
+
+
+.image-loading {
+    padding: 30px;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+}
+
+
+.image-error {
+    padding: 14px;
+
+    border: 1px solid rgba(228, 109, 103, 0.3);
+
+    border-radius: 6px;
+
+    background: rgba(228, 109, 103, 0.05);
+
+    color: var(--error);
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+.image-url {
+    margin-top: 8px;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 9px;
+
+    word-break: break-all;
+}
+
+
+/* ============================================================
+   EXECUTION ERROR
+   ============================================================ */
+
+.execution-error {
+    margin-top: 12px;
+
+    padding: 12px;
+
+    border: 1px solid rgba(228, 109, 103, 0.25);
+
+    border-radius: 6px;
+
+    background: rgba(228, 109, 103, 0.05);
+
+    color: var(--error);
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+
+    line-height: 1.6;
+}
+
+
+/* ============================================================
+   RECOVERY
+   ============================================================ */
+
+.recovery-card {
+    padding: 14px;
+
+    border: 1px solid rgba(228, 109, 103, 0.2);
+
+    border-radius: 7px;
+
+    background: rgba(228, 109, 103, 0.035);
+}
+
+
+.recovery-provider {
+    margin-bottom: 8px;
+
+    font-family: var(--mono);
+
+    font-size: 12px;
+}
+
+
+.recovery-error {
+    margin-bottom: 10px;
+
+    color: var(--error);
+
+    font-family: var(--mono);
+
+    font-size: 11px;
+
+    line-height: 1.5;
+
+    word-break: break-word;
+}
+
+
+.recovery-message {
+    color: var(--muted);
+
+    font-size: 12px;
+
+    line-height: 1.5;
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.pipeline-loading {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 12px;
+
+    min-height: 180px;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 12px;
+}
+
+
+.loading-spinner {
+    width: 16px;
+
+    height: 16px;
+
+    border: 2px solid var(--border);
+
+    border-top-color: var(--text);
+
+    border-radius: 50%;
+
+    animation: spin 0.8s linear infinite;
+}
+
+
+@keyframes spin {
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+/* ============================================================
+   RAW TRACE
+   ============================================================ */
+
+.log-toggle {
+    max-width: 1000px;
+
+    margin: 22px auto 8px;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    cursor: pointer;
+
+    user-select: none;
+}
+
+
+.log-toggle:hover {
+    color: var(--text);
+}
+
+
+.raw-log {
+    max-width: 1000px;
+
+    margin: 0 auto;
+
+    padding: 16px;
+
+    overflow: auto;
+
+    border: 1px solid var(--border);
+
+    border-radius: 7px;
+
+    background: #090b0f;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+
+    line-height: 1.6;
+
+    white-space: pre-wrap;
+
+    word-break: break-word;
+}
+
+
+/* ============================================================
+   STATUS
+   ============================================================ */
+
+.availability-status {
+    padding: 10px;
+
+    color: var(--muted);
+
+    font-family: var(--mono);
+
+    font-size: 10px;
+}
+
+
+.availability-status.error {
+    color: var(--error);
+}
+
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+    .shell {
+        grid-template-columns: 1fr;
+    }
+
+
+    .sidebar {
+        border-right: 0;
+
+        border-bottom: 1px solid var(--border);
+    }
+
+
+    .main {
+        padding: 28px 20px;
+    }
+
+
+    .analysis-grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 600px) {
+
+    .sidebar {
+        padding: 20px 16px;
+    }
+
+
+    .main {
+        padding: 20px 12px;
+    }
+
+
+    .pipeline-stage {
+        padding: 14px;
+    }
+
+
+    .availability-row {
+        grid-template-columns: 1fr auto;
+    }
+
+
+    .availability-model {
+        grid-column: 1 / -1;
+        grid-row: 2;
+    }
+
+
+    .availability-badge {
+        grid-column: 2;
+        grid-row: 1;
+    }
+
+
+    .markdown-content table {
+        display: block;
+
+        overflow-x: auto;
+
+        white-space: nowrap;
+    }
+
+}
+
