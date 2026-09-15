@@ -6,6 +6,8 @@
 
 Instead of relying on one model, NodexAI analyzes a task, selects a suitable provider, checks availability, and can automatically switch to another provider when the selected model fails.
 
+🚀 Live Demo: https://nodexai-br4r.onrender.com/
+
 > **One task → Best available model → Automatic recovery**
 
 ---
